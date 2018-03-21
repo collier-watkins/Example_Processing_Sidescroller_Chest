@@ -21,7 +21,6 @@ class Player:
         self.running = True
         self.runningFrameTime = 0
         
-        
     def draw(self):
         line(self.x - 14, self.y, self.x + 14, self.y) #Arms
         line(self.x, self.y - 20, self.x, self.y + 20) #Body
@@ -29,8 +28,6 @@ class Player:
         # Legs
         line(self.x, self.y + 20, self.x - 7, self.y + 35) #Left Leg
         line(self.x, self.y + 20, self.x + 7, self.y + 35) #Right Leg
-        
-        
         
         fill(255,255,255) #Head Color
         ellipse(self.x, self.y - 25, 20, 30)
@@ -76,11 +73,9 @@ class Player:
         if keyPressed and key == "d" and self.canMoveRight:    #If key d is currently pressed
             self.x = self.x + 5
             self.facingRight = True
-            self.running = True
         if keyPressed and key == "a" and self.canMoveLeft :    #If key a is currently pressed
             self.x = self.x - 5
             self.facingRight = False
-            self.running = True
         if keyPressed and key == " " and not self.canMoveDown :
           self.jumpTime = millis()
           
