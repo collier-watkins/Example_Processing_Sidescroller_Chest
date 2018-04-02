@@ -46,10 +46,10 @@ class Player:
         
         #Contact Point Draw
         fill(0,255,0)
-        #ellipse(self.x, self.y, 5, 5)
-        #ellipse(self.feetX,self.feetY, 5,5)
-        #ellipse(self.rightX, self.rightY, 5,5)
-        #ellipse(self.leftX, self.leftY, 5,5)
+        ellipse(self.x, self.y, 5, 5)
+        ellipse(self.feetX,self.feetY, 5,5)
+        ellipse(self.rightX, self.rightY, 5,5)
+        ellipse(self.leftX, self.leftY, 5,5)
         
         #Inventory Draw
         fill(255,255,0)
@@ -79,8 +79,14 @@ class Player:
         if keyPressed and key == " " and not self.canMoveDown :
           self.jumpTime = millis()
           
-        if millis() < self.jumpTime + 500 and keyPressed and key == " " :
+        if millis() < self.jumpTime + 500  and keyPressed and key == " " :
             self.y = self.y - 10
+            
+            
+            
+            
+            
+            
             
                 
 class Box:
@@ -101,6 +107,18 @@ class Box:
       return True
     else:
       return False
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
 class Chest:
   
@@ -149,7 +167,6 @@ class BowlingBall:
         self.movingRight = True
         self.launched = False
         
-    
     def draw(self):
         fill(0,0,0)
         ellipse(self.x, self.y, self.w, self.w)
@@ -184,6 +201,9 @@ ball = BowlingBall(0,0, 10)
 
 def setup():
   size(800,600)
+  
+  #fullScreen()  #Alternative to size()
+  
   boxes.append( Box(50,200,400,50) )
   boxes.append( Box(50,400,400,50) )
   boxes.append( Box(200,300,400,50) )
