@@ -1,3 +1,4 @@
+add_library("sound")
 
 #Making a 2D mario style game
 
@@ -78,6 +79,7 @@ class Player:
             self.facingRight = False
         if keyPressed and key == " " and not self.canMoveDown :
           self.jumpTime = millis()
+          sf.play();
           
         if millis() < self.jumpTime + 500  and keyPressed and key == " " :
             self.y = self.y - 10
@@ -96,11 +98,13 @@ class Box:
     self.x2 = X + W
     self.y1 = Y
     self.y2 = Y + H
+    self.img = loadImage("textureGold.jpg")
     
   def draw(self):
     rectMode(CORNERS)
     fill(255,0,0)
     rect(self.x1,self.y1,self.x2,self.y2)
+    image(self.img,self.x1, self.y1)
     
   def isPointInside(self, x, y):
     if x >= self.x1 and x <= self.x2 and y >= self.y1 and y <= self.y2 :
@@ -197,10 +201,20 @@ boxes = []
 chests = []
 
 ball = BowlingBall(0,0, 10)
-                
+
+            
 
 def setup():
   size(800,600)
+  
+  global sf  
+  sf = SoundFile(this, "spring.wav")
+  
+  global img
+  
+  img = loadImage("mario.jpg")
+  
+  
   
   #fullScreen()  #Alternative to size()
   
@@ -216,7 +230,9 @@ def setup():
 def draw():
   background(150)
   
-  
+  global sf
+  global img
+  image(img, 0,0)
   
   for b in boxes:
     b.draw()
@@ -248,6 +264,7 @@ def draw():
           if c.item != "" :
               man.items.append(c.item)
               c.grabbedItem()
+              sf = SoundFile(this, "spring.wav")
           
 
           
